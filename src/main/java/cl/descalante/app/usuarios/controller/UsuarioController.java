@@ -1,4 +1,4 @@
-package cl.descalante.app.clientes.controller;
+package cl.descalante.app.usuarios.controller;
 
 import java.util.List;
 
@@ -13,36 +13,35 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import cl.descalante.app.clientes.Entity.Cliente;
-import cl.descalante.app.clientes.Service.IClienteService;
-import cl.descalante.app.clientes.responses.ResponseClienteReceta;
+import cl.descalante.app.usuarios.Entity.Usuario;
+import cl.descalante.app.usuarios.Service.IUsuarioService;
 
 @RequestMapping(value = "/api/v1")
 @CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT })
 @RestController
-public class ClienteController {
+public class UsuarioController {
 	
 	@Autowired
-	private IClienteService clienteService;
+	private IUsuarioService usuarioService;
 	
-	@GetMapping("/clientes")
-	public List<Cliente> listar(){
-		return clienteService.findAll();
+	@GetMapping("/usuarios")
+	public List<Usuario> listarUsuarios	(){
+		return usuarioService.findAll();
 	}
 	
-	@GetMapping("/cliente/{id}")
-	public ResponseClienteReceta detalleCliente(@PathVariable Long id ){
-		return clienteService.findById(id);
+	@GetMapping("/usuario/{id}")
+	public Usuario detalleUsuario(@PathVariable Long id ){
+		return usuarioService.findById(id);
 	}	
 	
 	@PostMapping("/save")
-	public Cliente guardarCliente(@RequestBody Cliente cliente) {
-		return clienteService.save(cliente);
+	public Usuario guardarUsuario(@RequestBody Usuario usuario) {
+		return usuarioService.save(usuario);
 	}
 	
-	@DeleteMapping("/cliente/{id}")
-	public void deleteCliente(@RequestBody Long id) {
-		clienteService.deleteById(id);
+	@DeleteMapping("/usuario/{id}")
+	public void deleteUsuario(@RequestBody Long id) {
+		usuarioService.deleteById(id);
 	}
 	
 }
