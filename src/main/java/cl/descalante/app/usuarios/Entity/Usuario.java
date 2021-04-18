@@ -40,23 +40,23 @@ public class Usuario implements Serializable{
 	@Column(name = "usu_webpage")
 	private String usuWebpage;
 	@Column(name = "usu_facebook")
-	private Date usuFacebook;
+	private String usuFacebook;
 	@Column(name = "usu_twitter")
 	private String usuTwitter;
 	@Column(name = "usu_instagram")
-	private Date usuInstagram;
+	private String usuInstagram;
 	@Column(name = "usu_dateborn")
-	private String usuDateborn;
+	private Date usuDateborn;
 	@Column(name = "usu_gender")
 	private String usuGender;
 	@Column(name = "usu_picture")
-	private Date usuPicture;
+	private String usuPicture;
 	@Column(name = "usu_dateregist")
-	private String usuDateregist;
+	private Date usuDateregist;
 	@Column(name = "usu_rol")
-	private Date usuRol;
+	private String usuRol;
 	@Column(name = "usu_id_sucursal")
-	private Date usuIdSucursal;
+	private String usuIdSucursal;
 	
 	private static final long serialVersionUID = -922472834459252187L;
 
