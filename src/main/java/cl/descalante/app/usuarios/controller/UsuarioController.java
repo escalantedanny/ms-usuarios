@@ -15,9 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import cl.descalante.app.usuarios.Entity.Usuario;
 import cl.descalante.app.usuarios.Service.IUsuarioService;
+import cl.descalante.app.usuarios.exception.CustomError;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RequestMapping(value = "/api/v1")
-@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT })
+@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE })
 @RestController
 public class UsuarioController {
 	
@@ -25,22 +28,23 @@ public class UsuarioController {
 	private IUsuarioService usuarioService;
 	
 	@GetMapping("/usuarios")
-	public List<Usuario> listarUsuarios	(){
+	public List<Usuario> listarUsuarios	() throws CustomError{
 		return usuarioService.findAll();
 	}
 	
 	@GetMapping("/usuario/{id}")
-	public Usuario detalleUsuario(@PathVariable Long id ){
+	public Usuario detalleUsuario(@PathVariable Long id ) throws CustomError{
 		return usuarioService.findById(id);
 	}	
 	
 	@PostMapping("/save")
-	public Usuario guardarUsuario(@RequestBody Usuario usuario) {
+	public Usuario guardarUsuario(@RequestBody Usuario usuario) throws CustomError{
 		return usuarioService.save(usuario);
 	}
 	
 	@DeleteMapping("/usuario/{id}")
-	public void deleteUsuario(@RequestBody Long id) {
+	public void deleteUsuario(@PathVariable Long id) throws CustomError{
+		log.info("usuario {} eliminado", id);
 		usuarioService.deleteById(id);
 	}
 	
